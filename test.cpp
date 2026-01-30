@@ -6,14 +6,16 @@
 using namespace std;
 
 class Book {
+
 private:
-    string author;
     string bookName;
     int countPages;
     int mark;
     float cost;
-public:
 
+protected:
+    string author;
+public:
     Book() {
         author = "Unknown";
         bookName = "Unknown";

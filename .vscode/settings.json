@@ -49,5 +49,6 @@
     "xtr1common": "cpp",
     "xutility": "cpp"
   },
-  "cmake.sourceDirectory": "C:/git/programming_2025/Lecture06"
+  "cmake.sourceDirectory": "/Users/nkt/Programming_University_2025-2026/Lecture07",
+  "C_Cpp.errorSquiggles": "disabled"
 }

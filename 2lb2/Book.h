@@ -13,7 +13,6 @@ private:
     int pages;
     double price;
 
-    // Вспомогательные методы
     string format(const string& name, const string& auth);
     bool inVector(const vector<string>& vec, const string& name);
     string pure(const string& formattedName);

@@ -20,27 +20,22 @@ private:
     string str(double value);
 
 public:
-    // Конструкторы
     Book();
     Book(string author, vector<string> bookNames, int pages, double price);
     Book(const Book& other);
     
-    // Деструктор
     ~Book();
     
-    // Операторы
     Book& operator=(const Book& other);
     Book operator+(const Book& other);
     Book& operator+=(const Book& other);
     Book operator/(const Book& other);
     
-    // Геттеры
     string getAuthor();
     vector<string> getNames();
     int getPages();
     double getPrice();
     
-    // Сеттеры
     void setAuthor(string author);
     void setPages(int pages);
     void setPrice(double price);

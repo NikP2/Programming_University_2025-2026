@@ -44,82 +44,77 @@ Book& Book::operator=(const Book& other) {
 Book Book::operator+(const Book& other) {
     cout << "Start operator +" << endl;
     Book result;
-    if (this->author != "Unknown" && other.author != "Unknown") {
-        if (this->author == other.author) {
-            result.author = this->author;
-        } else {
-            result.author = this->author + " и " + other.author;
-        }
-    } else {
-        result.author = (this->author != "Unknown") ? this->author : other.author;
-    }
-
+    result.author = this->author + " и " + other.author;
     vector<string> allNames;
-    for (size_t i = 0; i < this->bookNames.size(); i++) {
-        if (!inVector(allNames, this->bookNames[i])) {
+    for (int i = 0; i < this->bookNames.size(); i++) {
+        bool found = false;
+        for (int j = 0; j < allNames.size(); j++) {
+            if (this->bookNames[i] == allNames[j]) {
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
             allNames.push_back(this->bookNames[i]);
         }
     }
-    
-    for (size_t i = 0; i < other.bookNames.size(); i++) {
-        if (!inVector(allNames, other.bookNames[i])) {
+    for (int i = 0; i < other.bookNames.size(); i++) {
+        bool found = false;
+        for (int j = 0; j < allNames.size(); j++) {
+            if (other.bookNames[i] == allNames[j]) {
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
             allNames.push_back(other.bookNames[i]);
         }
     }
-    
     result.bookNames = allNames;
     result.pages = this->pages + other.pages;
     result.price = this->price + other.price;
+    
     return result;
 }
 
 Book& Book::operator+=(const Book& other) {
     cout << "Start operator +=" << endl;
     
-    if (this->author != "Unknown" && other.author != "Unknown") {
-        if (this->author != other.author) {
-            this->author = this->author + " и " + other.author;
-        }
-    } else if (this->author == "Unknown") {
-        this->author = other.author;
-    }
+    string thisAuthor = this->author;
+    string otherAuthor = other.author;
     
+    if (thisAuthor != otherAuthor) {
+        this->author = thisAuthor + " и " + otherAuthor;
+    }
     vector<string> allNames;
-    
-    bool differentAuthors = (this->author.find(" и ") != string::npos);
-    
-    if (differentAuthors) {
-        string firstAuthor = this->author.substr(0, this->author.find(" и "));
-        string secondAuthor = other.author;
-        for (size_t i = 0; i < this->bookNames.size(); i++) {
-            string formattedName = format(pure(this->bookNames[i]), firstAuthor);
-            if (!inVector(allNames, formattedName)) {
-                allNames.push_back(formattedName);
-            }
+    for (int i = 0; i < this->bookNames.size(); i++) {
+        allNames.push_back(this->bookNames[i]);
+    }
+    for (int i = 0; i < other.bookNames.size(); i++) {
+        allNames.push_back(other.bookNames[i]);
+    }
+    if (thisAuthor != otherAuthor) {
+        for (int i = 0; i < this->bookNames.size(); i++) {
+            allNames[i] = thisAuthor + allNames[i];
         }
-        for (size_t i = 0; i < other.bookNames.size(); i++) {
-            string formattedName = format(pure(other.bookNames[i]), secondAuthor);
-            if (!inVector(allNames, formattedName)) {
-                allNames.push_back(formattedName);
-            }
-        }
-    } else {
-        for (size_t i = 0; i < this->bookNames.size(); i++) {
-            string pureName = pure(this->bookNames[i]);
-            if (!inVector(allNames, pureName)) {
-                allNames.push_back(pureName);
-            }
-        }
-        
-        for (size_t i = 0; i < other.bookNames.size(); i++) {
-            string pureName = pure(other.bookNames[i]);
-            if (!inVector(allNames, pureName)) {
-                allNames.push_back(pureName);
-            }
+        for (int i = this->bookNames.size(); i < allNames.size(); i++) {
+            allNames[i] = otherAuthor + allNames[i];
         }
     }
-    
-    this->bookNames = allNames;
+    vector<string> uniqueNames;
+    for (int i = 0; i < allNames.size(); i++) {
+        bool found = false;
+        for (int j = 0; j < uniqueNames.size(); j++) {
+            if (allNames[i] == uniqueNames[j]) {
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            uniqueNames.push_back(allNames[i]);
+        }
+    }
+    this->bookNames = uniqueNames;
     this->pages = this->pages + other.pages;
     this->price = (this->price + other.price) * 0.85;
     

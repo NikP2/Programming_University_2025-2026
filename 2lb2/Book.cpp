@@ -44,7 +44,12 @@ Book& Book::operator=(const Book& other) {
 Book Book::operator+(const Book& other) {
     cout << "Start operator +" << endl;
     Book result;
-    result.author = this->author + " и " + other.author;
+    if (this->author != other.author) {
+        result.author = this->author + " и " + other.author;
+    }
+    else {
+        result.author = this->author;
+    }
     vector<string> allNames;
     for (int i = 0; i < this->bookNames.size(); i++) {
         bool found = false;

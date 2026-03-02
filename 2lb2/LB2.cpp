@@ -8,7 +8,7 @@ int main() {
     cout << "1. Create book" << endl;
     cout << "----------------" << endl;
     
-    vector<string> names1 = {"Attomic Habbits", "World and Peace", "Space"};
+    vector<string> names1 = {"Attomic Habbits", "Bible", "Space"};
     Book book1("A", names1, 25, 100.0);
     book1.print();
     

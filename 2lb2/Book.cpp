@@ -44,43 +44,42 @@ Book& Book::operator=(const Book& other) {
 Book Book::operator+(const Book& other) {
     cout << "Start operator +" << endl;
     Book result;
-    if (this->author != other.author) {
-        result.author = this->author + " и " + other.author;
-    }
-    else {
-        result.author = this->author;
-    }
     vector<string> allNames;
     for (int i = 0; i < this->bookNames.size(); i++) {
-        bool found = false;
-        for (int j = 0; j < allNames.size(); j++) {
-            if (this->bookNames[i] == allNames[j]) {
-                found = true;
-                break;
-            }
-        }
-        if (!found) {
-            allNames.push_back(this->bookNames[i]);
-        }
+        allNames.push_back(this->bookNames[i]);
     }
     for (int i = 0; i < other.bookNames.size(); i++) {
-        bool found = false;
-        for (int j = 0; j < allNames.size(); j++) {
-            if (other.bookNames[i] == allNames[j]) {
-                found = true;
-                break;
+        allNames.push_back(other.bookNames[i]);
+    }
+
+    if (this->author != other.author) {
+        result.author = this->author + " и " + other.author;
+        result.bookNames = allNames;
+    } 
+    else {
+        result.author = this->author;
+        vector<string> uniqueNames;
+        for (int i = 0; i < allNames.size(); i++) {
+            bool found = false;
+            for (int j = 0; j < uniqueNames.size(); j++) {
+                if (allNames[i] == uniqueNames[j]) {
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                uniqueNames.push_back(allNames[i]);
             }
         }
-        if (!found) {
-            allNames.push_back(other.bookNames[i]);
-        }
+        result.bookNames = uniqueNames;
     }
-    result.bookNames = allNames;
+    
     result.pages = this->pages + other.pages;
     result.price = this->price + other.price;
     
     return result;
 }
+
 
 Book& Book::operator+=(const Book& other) {
     cout << "Start operator +=" << endl;

@@ -1,3 +1,16 @@
 {
-    "cmake.sourceDirectory": "/Users/nkt/Programming_University_2025-2026/mylib"
+    "cmake.sourceDirectory": "/Users/nkt/Programming_University_2025-2026/mylib",
+    "files.encoding": "utf8",
+    "files.autoGuessEncoding": true,
+    "terminal.integrated.defaultProfile.osx": "zsh",
+    "terminal.integrated.env.osx": {
+        "LANG": "ru_RU.UTF-8",
+        "LC_ALL": "ru_RU.UTF-8"
+    },
+    "C_Cpp.clang_format_fallbackStyle": "Google",
+    "C_Cpp.default.compilerPath": "/usr/bin/clang++",
+    "C_Cpp.default.compilerArgs": [
+        "-finput-charset=UTF-8",
+        "-fexec-charset=UTF-8"
+    ]
 }

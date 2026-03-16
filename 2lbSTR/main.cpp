@@ -10,26 +10,25 @@ int main() {
     setlocale(LC_CTYPE, "C.UTF-8");
     
     // Пункт 0
-    string rus = "АаБбВвГгДдЕеЁёЖжЗзИиЙйКкЛлМмНнОоПпРрСсТтУуФфХхЦцЧчШшЩщЪъЫыЬьЭэЮюЯя";
-    string eng = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz";
+    wstring rus = L"АаБбВвГгДдЕеЁёЖжЗзИиЙйКкЛлМмНнОоПпРрСсТтУуФфХхЦцЧчШшЩщЪъЫыЬьЭэЮюЯя";
+    wstring eng = L"AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz";
     
-    cout << "Русский алфавит:" << endl;
+    wcout << L"Русский алфавит:" << endl;
     for (int i = 0; i < rus.length(); i++) {
         int code = static_cast<int>(static_cast<unsigned char>(rus[i]));
-        cout << rus[i] << " : " << code << endl;
+        wcout << rus[i] << L" : " << code << endl;
     }
     
-    cout << "\nАнглийский алфавит:" << endl;
+    wcout << L"\nАнглийский алфавит:" << endl;
     for (int i = 0; i < eng.length(); i++) {
         int code = static_cast<int>(eng[i]);
-        cout << eng[i] << " : " << code << endl;
+        wcout << eng[i] << L" : " << code << endl;
     }
     cout << endl;
 
     // Пункт 1
     ofstream tout;
     
-    // Согласные буквы (строчные и заглавные в одном массиве)
     char sog[] = "бвгджзйклмнпрстфхцчшщБВГДЖЗЙКЛМНПРСТФХЦЧШЩ";
     
     char str[201] = {0};
@@ -39,7 +38,6 @@ int main() {
     tout.open("text.txt");
     cout << "Введите текст не более 100 символов: ";
     
-    // Ввод строки
     while (i < 200) {
         char ch = cin.get();
         if (ch == '\n') {

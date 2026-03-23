@@ -256,7 +256,6 @@ int main() {
         }
     }
     
-    // ========== ЗАПИСЬ РЕЗУЛЬТАТА В result.txt ==========
     wofstream outFile("result.txt");
     if (!outFile.is_open()) {
         wcout << L"Error opening file!";

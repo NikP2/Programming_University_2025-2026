@@ -4,6 +4,7 @@
 #include <QFile>
 #include <QDir>
 #include <QStandardPaths>
+#include <QButtonGroup>
 
 
 
@@ -38,6 +39,12 @@ MainWindow::MainWindow(QWidget *parent)
                               "font-weight: 600;"
                               "}");
 
+    QButtonGroup *machineGroup = new QButtonGroup(this);
+    machineGroup->addButton(ui->radio_machine1);
+    machineGroup->addButton(ui->radio_machine2);
+    machineGroup->setExclusive(false);
+
+
 }
 
 MainWindow::~MainWindow()
@@ -64,6 +71,8 @@ MainWindow::~MainWindow()
 
 
 void MainWindow::on_reset_clicked()
+
+
 {
     ui->lineEdit_marka->clear();
     ui->lineEdit_gos_number->clear();

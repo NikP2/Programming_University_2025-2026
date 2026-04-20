@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    this->setWindowTitle("Авто");
     // ui->radio_machine1->setChecked(true);
     ui->lineEdit_marka->setInputMask(">AAAAAAAAAAAAAAAAA"); // > заглавные буквы
     ui->lineEdit_year->setInputMask("0000");
@@ -112,6 +113,11 @@ void MainWindow::on_sumbit_clicked()
     }
     if(gos_number.length() != 8 && gos_number.length() != 9) {
         QMessageBox::warning(this, "Ошибка", "Поле 'Гос.Номер' должно содержать 8 или 9 символов");
+        return;
+    }
+
+    if(year[0] == '0') {
+        QMessageBox::warning(this, "Ошибка", "Год не может начинаться с нуля");
         return;
     }
 
